@@ -2,6 +2,11 @@
 
 app.constant 'ROUTES',
 
+    index:
+        url: '/'
+        templateUrl: 'partials/view-team-search.html'
+        controller:  'TeamSearchController'
+
     teamsSearch:
         url: '/teams/search'
         templateUrl: 'partials/view-team-search.html'
@@ -20,13 +25,13 @@ app.constant 'ROUTES',
 
 
 app.config ($routeProvider, ROUTES) ->
-
     resolve =
         data: 'DataService'
 
     for id, route of ROUTES
         options = _.pick route, 'templateUrl', 'controller'
         options.resolve = resolve
+        console.log route, options
         $routeProvider.when route.url, options
 
     $routeProvider.otherwise redirectTo:'/teams/search'

@@ -1,16 +1,30 @@
 
 .widget.team-list
 
-    h1 Team List ({{ teams.length }})
+    team-details(team="availableTeams[focusedTeamIndex]")
 
-    ul.teams
-
-        li.team(ng-repeat="team in teams")
-            a(ng-click="selectTeam(team)", href="#")
-                | {{ team.name }}
+    nav
+        .nav-wrapper
 
 
-    h1 Selected Teams
+            button.previous-team(ng-click="showPreviousTeam()")
+                | <
+
+            section.team-info
+                .team-name {{ availableTeams[focusedTeamIndex].name }}
+                .team-city {{ availableTeams[focusedTeamIndex].city }}
+
+            //- ul.team-bullets
+            //-     li.team-bullet(
+            //-         ng-repeat="team in availableTeams"
+            //-         ng-class="{selected:$index == focusedTeamIndex}")
+            //- button.select-team(ng-click="selectTeam(availableTeams[focusedTeamIndex])")
+            //-     | Select Team
+
+            button.next-team(ng-click="showNextTeam()")
+                | >
+            button.compare-teams(ng-click="compareTeams(selectedTeams)")
+                | Hire them!
 
     ul.selected-teams
         li.selected-team(ng-repeat="team in selectedTeams")

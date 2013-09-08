@@ -81,12 +81,12 @@ module.exports = (grunt) ->
 
         # Copy some assets...
         copy:
-            #css_libs:
-            #   files: '<%= config.build_directory %>/assets/css/libs/': 'src/styles/libs/**'
             js_libs:
                 files: '<%= config.build_directory %>/assets/js/libs/': 'src/scripts/libs/**'
             images:
                files: '<%= config.build_directory %>/assets/images/': 'src/images/**'
+            json_data:
+                files: '<%= config.build_directory %>/assets/js/app/services/data/': 'src/scripts/app/services/data/**/*.json'
 
 
         # CSS Compass compilation

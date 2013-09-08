@@ -1,0 +1,73 @@
+
+.team-details {
+
+    padding: 24px;
+
+    h1 {
+        font-weight: 300;
+        font-size: 52px;
+    }
+
+    .members {
+        float: left;
+    }
+
+    .member {
+        margin-bottom: 30px;
+
+        & > * {
+            display: inline-block;
+            float: left;
+        }
+
+        img {
+            height: 60px;
+        }
+
+        .member-name {
+            opacity: 0.8;
+            font-weight: 300;
+            line-height: 75px;
+            font-size: 32px;
+            // left: 24px + 60px + 50px;
+            padding-left: 30px;
+        }
+
+        clear: both;
+    }
+
+
+    .projects {
+        float: left;
+        height: 100%;
+        overflow: scroll;
+
+        .project {
+
+            .project-name {
+                font-size: 20px;
+            }
+
+            .project-languages {
+                display: inline-block;
+            }
+
+            .project-language {
+                display: inline-block;
+                padding: 6px 12px;
+                margin: 0.5em;
+                background: #222;
+                font-weight: 600;
+                border-radius: 16px;
+                color: #ccc;
+                // min-width: 45px;
+                text-align: center;
+                letter-spacing: 1px;
+
+            }
+        }
+
+    }
+
+
+}

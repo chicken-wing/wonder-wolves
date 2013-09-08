@@ -1,0 +1,137 @@
+
+.team-list {
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    $bottom-height: 250px;
+    $nav-height: 100px;
+
+    .team-details {
+        position: absolute;
+        top: 0;
+        bottom: 250px;
+    }
+
+    nav {
+        background: #222;
+        position: absolute;
+        bottom: $bottom-height - $nav-height;
+        height: $nav-height;
+        max-height: $nav-height;
+        width: 100%;
+        display: table;
+        font-size: 24px;
+
+        color: #ccc;
+
+        .nav-wrapper {
+            display: table-row;
+            height: $nav-height;
+            max-height: $nav-height;
+
+            button {
+                border: none;
+                padding: 0 2em;
+                margin: 0;
+                background: #222;
+                color: #ccc;
+                font-size: 24px;
+
+                &:hover {
+                    background: #333;
+                    cursor: pointer;
+                }
+            }
+
+            .previous-team {
+                border-right: 1px solid #888;
+                width: 110px;
+                padding: 0;
+                float: left;
+                height: $nav-height;
+            }
+
+            .next-team {
+                float: right;
+                border-left: 1px solid #888;
+                width: 110px;
+                padding: 0;
+            }
+
+            .compare-teams {
+                border-left: 1px solid #888;
+                float: right;
+                // height: $nav-height;
+            }
+
+            & > * {
+                height: 100%;
+                display: table-cell;
+                line-height: $nav-height;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .team-info {
+                position: relative;
+                line-height: 1.4;
+                float: left;
+                height: $nav-height;
+                line-height: $nav-height;
+                // padding-left: 1em;
+                width: 400px;
+                // text-align: left;
+                border-right: 1px solid #888;
+                & > * {
+                    display: inline-block;
+                    padding-left: 0.5em;
+                }
+                .team-city {
+                    opacity: 0.5;
+                }
+            }
+
+            // .team-bullets {
+            //     display: none;
+            //     padding: 0;
+            //     margin: 0;
+            //     height: $nav-height;
+            //     text-align: center;
+            //     position: relative;
+            //     right: -150px;
+            //     text-align: right;
+            // }
+
+            // .team-bullet {
+            //     font-size: 80px;
+            //     display: inline-block;
+            //     height: $nav-height;
+            //     vertical-align: middle;
+            //     line-height: $nav-height;
+            //     padding-right: 0.3em;
+
+            //     &:after {
+            //         content: '•';
+            //     }
+
+            //     &.selected {
+            //         color: #82c8a0 !important;
+            //     }
+            // }
+
+        }
+
+        clear: both;
+
+    }
+
+    .selected-teams {
+        background: red;
+        position: absolute;
+        height: $bottom-height - $nav-height;
+        bottom: 0;
+        width: 100%;
+    }
+
+}

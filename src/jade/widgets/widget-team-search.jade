@@ -15,7 +15,6 @@
     .divider
 
     nl-team-search-form.thisshit
-
         p
             | I am looking for
             | <nl-select value="nlSelects.who.value" options="nlSelects.who.options" required></nl-select>
@@ -24,5 +23,5 @@
             | by
             | <nl-select value="nlSelects.who.value" options="nlSelects.who.options" required></nl-select>
 
-        button(type="submit")
+        button(type="submit", ng-click="listTeams()")
             | Start Hunting

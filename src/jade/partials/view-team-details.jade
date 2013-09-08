@@ -2,6 +2,9 @@
 .view.view-team.view-team-details
 
     h1 Team Details
+    h1 Rating: {{ team.rating }}
 
+    ul: li.member(ng-repeat="member in team.members")
+        | {{ member.name }}
 
 

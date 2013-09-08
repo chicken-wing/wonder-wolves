@@ -1,0 +1,17 @@
+.widget.team-details
+
+    h1 {{ team.name }}
+
+    .team-rating {{ team.rating }}
+
+    ul.members
+        li.member(ng-repeat="member in team.members")
+            img.member-image(ng-src="{{ member.image }}")
+            .member-name {{ member.name }}
+
+    ul.projects
+        li.project(ng-repeat="project in team.projects")
+            .project-name {{ project.name }}
+            ul.project-languages
+                li.project-language(ng-repeat="language in project.languages")
+                    | {{ language }}
