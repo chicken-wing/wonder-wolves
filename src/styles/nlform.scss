@@ -68,7 +68,8 @@
 .nl-field ul {
     position: absolute;
     visibility: hidden;
-    background: #76C3BD;
+    background: #333;
+    box-shadow: 0 0 5px 0 #222;
     left: -0.5em;
     top: 50%;
     font-size: 80%;
@@ -102,10 +103,17 @@
     cursor: pointer;
     white-space: nowrap;
     font-size: 16px;
+
+    transition: 0.3s;
+}
+
+.nl-dd ul li:hover {
+    color: #b14943;
+    background: #2f2f2f;
 }
 
 .nl-dd ul li.nl-dd-checked {
-    color: #478982;
+    color: #b14943;
 }
 
 .no-touch .nl-dd ul li:hover {
@@ -132,9 +140,9 @@
 .nl-dd ul li.nl-dd-checked:before {
     content: "\e000";
     position: absolute;
-    right: 1em;
+    right: 0em;
     font-size: 50%;
-    line-height: 3;
+    line-height: 4;
 }
 
 .nl-ti-text ul {

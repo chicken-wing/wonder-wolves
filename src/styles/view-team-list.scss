@@ -16,7 +16,7 @@
     nav {
         background: #222;
         position: absolute;
-        bottom: $bottom-height - $nav-height;
+        bottom: 0;
         height: $nav-height;
         max-height: $nav-height;
         width: 100%;
@@ -129,7 +129,7 @@
     .selected-teams {
         background: red;
         position: absolute;
-        height: $bottom-height - $nav-height;
+        height: 0;
         bottom: 0;
         width: 100%;
     }

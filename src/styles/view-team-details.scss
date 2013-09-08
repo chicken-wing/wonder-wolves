@@ -1,36 +1,36 @@
 
 .team-details {
 
-    padding: 24px;
+    padding: 50px;
 
     h1 {
-        font-weight: 300;
-        font-size: 52px;
+        margin: 0 0 25px;
+        font-size: 40px;
+        font-weight: 200;
     }
 
     .members {
-        float: left;
+        position: fixed;
     }
 
     .member {
-        margin-bottom: 30px;
-
         & > * {
             display: inline-block;
             float: left;
+            margin: 0 0 30px 0;
         }
 
         img {
             height: 60px;
+            border-radius: 100%;
         }
 
         .member-name {
-            opacity: 0.8;
-            font-weight: 300;
-            line-height: 75px;
-            font-size: 32px;
-            // left: 24px + 60px + 50px;
-            padding-left: 30px;
+            padding: 0 0 0 30px;
+            font-weight: 200;
+            line-height: 60px;
+            font-size: 25px;
+            // left: 24px + 60px + 50px; <-- WTF is this Nick?
         }
 
         clear: both;
@@ -38,14 +38,16 @@
 
 
     .projects {
-        float: left;
+        position: fixed;
+        left: 50%;
         height: 100%;
-        overflow: scroll;
 
         .project {
 
             .project-name {
-                font-size: 20px;
+                margin: 10px 0;
+                font-size: 18px;
+                font-weight: bold;
             }
 
             .project-languages {
@@ -54,12 +56,11 @@
 
             .project-language {
                 display: inline-block;
-                padding: 6px 12px;
+                padding: 5px 12px 6px;
                 margin: 0.5em;
                 background: #222;
-                font-weight: 600;
                 border-radius: 16px;
-                color: #ccc;
+                color: #fff;
                 // min-width: 45px;
                 text-align: center;
                 letter-spacing: 1px;
