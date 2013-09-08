@@ -7,16 +7,16 @@ include mixins/meta-tag-mixins
 html(lang='en', ng-app="disrupt.sf.hack01")
 
   head
-    title TechCrunch Disrupt SF 2013
+    title Wonder Wolves
 
     block meta
-      //- include includes/mobile-meta-tags
+      include includes/mobile-meta-tags
       meta(charset="utf-8")
 
       //- meta(name="google-site-verification", content="<GOOGLE ANALYTICS API KEY>")
 
-      mixin meta-author('TechCrunch Disrupt SF 2013')
-      mixin meta-description('TechCrunch Disrupt SF 2013')
+      mixin meta-author('Team Chicken Wing')
+      mixin meta-description('TODO')
 
     block css
       mixin css("default")
@@ -26,20 +26,45 @@ html(lang='en', ng-app="disrupt.sf.hack01")
       mixin js-lib("lodash")
       mixin js-lib("angular")
       mixin js-lib("angular.ui")
+      mixin js-lib("angular.nlforms")
 
     block app
         mixin app-core("app")
+        mixin app-core("router")
 
         //- Controllers
         mixin app-controller("main")
+        mixin app-controller("views/team")
 
         //- Services
-        mixin app-service("example")
+        mixin app-service("data")
 
         //- Directives
-        mixin app-directive("example")
+        mixin app-directive("team-search")
 
-  body
 
-    h1 TechCrunch Disrupt SF 2013
+  body(ng-controller="MainController")
 
+    header
+
+      select(ng-model="subview")
+        option(value="search")
+          | search
+        option(value="list")
+          | list
+        option(value="compare")
+          | compare
+
+
+    section#subviews(ng-switch="subview", ng-animate="'animate'")
+
+        section.view-team-search(ng-switch-when="search")
+            .logo
+              | Wonder Wolves
+            team-search(teams="$parent.teams", found-teams="$parent.foundTeams")
+
+        section.subview(ng-switch-when="list")
+            team-list(teams="$parent.teams", selected-teams="$scope.selectedTeams")
+
+        section.subview(ng-switch-when="compare")
+            team-compare(teams="$parent.selectedTeams")

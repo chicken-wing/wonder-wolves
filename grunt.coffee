@@ -55,14 +55,29 @@ module.exports = (grunt) ->
 
         # Compile the jade files
         jade:
-            app:
+            index:
                 # FIXME: Can't get folder exclusion syntax to work...
-                src:  'src/jade/**/*.jade'
+                src:  'src/jade/index.jade'
                 dest: '<%= config.build_directory %>'
                 options:
                     client: false
                     pretty: true
                     compileDebug: true
+            partials:
+                src: 'src/jade/partials/**/*.jade'
+                dest: '<%= config.build_directory %>/partials'
+                options:
+                    client: false
+                    pretty: true
+                    compileDebug: true
+            widgets:
+                src: 'src/jade/widgets/**/*.jade'
+                dest: '<%= config.build_directory %>/widgets'
+                options:
+                    client: false
+                    pretty: true
+                    compileDebug: true
+
 
         # Copy some assets...
         copy:

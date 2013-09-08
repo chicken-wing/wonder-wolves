@@ -1,0 +1,17 @@
+
+.widget.team-list
+
+    h1 Team List ({{ teams.length }})
+
+    ul.teams
+
+        li.team(ng-repeat="team in teams")
+            a(ng-click="selectTeam(team)", href="#")
+                | {{ team.name }}
+
+
+    h1 Selected Teams
+
+    ul.selected-teams
+        li.selected-team(ng-repeat="team in selectedTeams")
+            | {{ team.name }}
