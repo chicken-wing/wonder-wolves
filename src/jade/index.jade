@@ -1,0 +1,45 @@
+include mixins/asset-mixins
+include mixins/asset-mixins-angular
+include mixins/meta-tag-mixins
+
+
+!!!
+html(lang='en', ng-app="disrupt.sf.hack01")
+
+  head
+    title TechCrunch Disrupt SF 2013
+
+    block meta
+      //- include includes/mobile-meta-tags
+      meta(charset="utf-8")
+
+      //- meta(name="google-site-verification", content="<GOOGLE ANALYTICS API KEY>")
+
+      mixin meta-author('TechCrunch Disrupt SF 2013')
+      mixin meta-description('TechCrunch Disrupt SF 2013')
+
+    block css
+      mixin css("default")
+
+    block js
+      mixin js-lib("jquery")
+      mixin js-lib("lodash")
+      mixin js-lib("angular")
+      mixin js-lib("angular.ui")
+
+    block app
+        mixin app-core("app")
+
+        //- Controllers
+        mixin app-controller("main")
+
+        //- Services
+        mixin app-service("example")
+
+        //- Directives
+        mixin app-directive("example")
+
+  body
+
+    h1 TechCrunch Disrupt SF 2013
+
