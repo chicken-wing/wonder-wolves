@@ -1,8 +1,6 @@
 .widget.team-details
 
-    h1 {{ team.name }}
-
-    .team-rating {{ team.rating }}
+    h1 {{ team.name }} <span class="level">| Level {{ team.rating }}</span>
 
     ul.members
         li.member(ng-repeat="member in team.members")
@@ -13,5 +11,5 @@
         li.project(ng-repeat="project in team.projects")
             .project-name {{ project.name }}
             ul.project-languages
-                li.project-language(ng-repeat="language in project.languages")
+                li.project-language(ng-repeat="language in project.languages", ng-class="{selected:langUsed(language)}")
                     | {{ language }}

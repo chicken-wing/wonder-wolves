@@ -14,6 +14,7 @@
     }
 
     .member {
+        margin-top: 10px;
         & > * {
             display: inline-block;
             float: left;
@@ -41,6 +42,7 @@
         position: fixed;
         left: 50%;
         height: 100%;
+        overflow: scroll;
 
         .project {
 
@@ -61,14 +63,21 @@
                 background: #222;
                 border-radius: 16px;
                 color: #fff;
-                // min-width: 45px;
                 text-align: center;
                 letter-spacing: 1px;
+
+                &.selected {
+                    background: #82c8a0;
+                }
 
             }
         }
 
     }
 
+
+    .level {
+        opacity: 0.5;
+    }
 
 }

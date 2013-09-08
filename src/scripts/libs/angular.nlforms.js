@@ -54,7 +54,7 @@ angular.module('vr.directives.nlForm.select',[])
                     element.parent().append(overlay);
                 }
                 // close the select when the overlay is clicked
-                overlay.bind('click',function() { scope.$apply(scope.close); });
+                $('body').bind('click',function() { scope.$apply(scope.close); });
 
             }
         };
@@ -400,7 +400,7 @@ angular.module('vr.directives.nlForm.text',[])
                     element.parent().append(overlay);
                 }
                 // close the input when the overlay is clicked
-                overlay.bind('click',function() { scope.$apply(scope.close) });
+                $('body').bind('click',function() { scope.$apply(scope.close) });
             }
         };
     })

@@ -64,7 +64,7 @@ html(lang='en', ng-app="disrupt.sf.hack01")
             team-search(teams="$parent.teams", found-teams="$parent.foundTeams")
 
         section.subview(ng-switch-when="list")
-            team-list(teams="$parent.teams", selected-teams="$scope.selectedTeams")
+            team-list(teams="$parent.matchedTeams", selected-teams="$scope.selectedTeams")
 
-        section.subview(ng-switch-when="compare")
-            team-compare(teams="$parent.selectedTeams")
+        //- section.subview(ng-switch-when="compare")
+        //-     team-compare(teams="$parent.selectedTeams")

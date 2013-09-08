@@ -11,20 +11,98 @@ app.directive 'teamSearch', ->
 
 
 
-app.directive 'nlTeamSearchForm', ->
+app.service 'TeamFinder', ($rootScope) ->
+
+    findTeamsWithLanguage = (teams, language) ->
+        result = _.filter teams, (team) ->
+            languages = _.flatten _.map team.projects, (project) -> project.languages
+            return language in languages
+        return result
+
+    findTeamsWithLanguages = (teams, languages) ->
+        teamSets = _.map languages, (language) -> findTeamsWithLanguage teams, language
+
+        teams = _.flatten _.map teamSets, do ->
+            seen = {}
+            (teams) -> _.filter teams, (team) ->
+                return false if seen[team.name]
+                return (seen[team.name] = true)
+
+        # teams = _.sortBy teams, (team) ->
+        #     langSets = _.map team.projects, (project) -> project.languages
+        #     _.reduce langSets, ((result, langSet) ->
+        #         for language in langSet
+        #             result++ if language in languages
+        #         return result
+        #     ), 0
+
+
+    searchHandler: (teams, searchResults) ->
+        results =
+            who:  searchResults.who.value
+            when: searchResults.when.value
+            what: searchResults.what.value
+        # console.log searchResults, teams, results.who
+        $rootScope.langs = results.who
+        return findTeamsWithLanguages teams, results.who
+
+
+
+app.directive 'nlTeamSearchForm', ($rootScope, TeamFinder) ->
     restrict: 'E'
     transclude: true
     replace: true
     template: '<form ng-transclude></form>'
     link: ($scope) ->
+
+
+        values =
+            who:
+                ios:            ['Obj-C']
+                web:            ['Scala', 'Ruby', 'Javascript']
+                php:            ['PHP']
+                java:           ['Java']
+                frontend:       ['HTML', 'CSS', 'Javascript']
+                nocturnal:      ['Clojure']
+                sexy:           ['Javascript']
+
+
         $scope.nlSelects =
             who:
                 options:  [
-                    'Great Grandmothers'
-                    'Sexy People'
-                    'bacons'
+                    {label:'iOS Ninjas',value:values.who.ios}
+                    {label:'Web Ballers',value:values.who.web}
+                    {label:'PHP Noobs',value:values.who.php}
+                    {label:'Java Singleton Factory Makers', value:values.who.java}
+                    {label:'Frontend Hipsters',value:values.who.frontend}
+                    {label:'Sexy People',value:values.who.sexy}
+                    {label:'Nocturnal Neckbeards',value:values.who.nocturnal}
                 ]
-                value: null
+            what:
+                options: [
+                    'Mobile App'
+                    'Web Service'
+                    'SUPER AWESOME IDEA!!'
+                    'Website'
+                    'Prototype'
+                    'Landing Page'
+                    'Disaster'
+                ]
+            when:
+                options: [
+                    'Next Month'
+                    'Next Week'
+                    'Tomorrow'
+                    'Yesterday'
+                ]
+
+        $scope.submitForm = ->
+            teams = TeamFinder.searchHandler $scope.teams, $scope.nlSelects
+            console.log teams
+            $rootScope.listTeams teams
+
+
+
 
 
 
@@ -51,15 +129,15 @@ app.directive 'teamList', ($timeout, $rootScope) ->
             $scope.selectedTeams = _.filter $scope.selectedTeams, do ->
                 seen = {}
                 (team) ->
-                    return (seen[team.id] = true) if not seen[team.id]
+                    return (seen[team.name] = true) if not seen[team.name]
                     return false
 
         $scope.compareTeams = $rootScope.compareTeams
 
         $scope.$watch 'selectedTeams', (selectedTeams) ->
             $scope.availableTeams = do ->
-                selectedIds = _.map selectedTeams, (team) -> team.id
-                _.reject $scope.teams, (team) -> team.id in selectedIds
+                selectedIds = _.map selectedTeams, (team) -> team.name
+                _.reject $scope.teams, (team) -> team.name in selectedIds
             $scope.focusedTeamIndex = Math.min($scope.focusedTeamIndex, $scope.availableTeams.length-1)
 
         $scope.$watch 'teams', (teams) ->
@@ -71,13 +149,16 @@ app.directive 'teamList', ($timeout, $rootScope) ->
 
 
 
-app.directive 'teamDetails', ->
+app.directive 'teamDetails', ($rootScope) ->
     restrict: 'E'
     scope:
         team: '='
     replace: true
     templateUrl: '/widgets/widget-team-details.html'
     link: ($scope) ->
+        $scope.langs = $rootScope.langs
+        $scope.langUsed = (language) ->
+            language in $scope.langs
 
 
 
