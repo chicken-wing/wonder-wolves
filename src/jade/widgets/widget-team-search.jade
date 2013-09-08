@@ -12,11 +12,17 @@
 
 .widget.team-search
 
-    nl-team-search-form
+    .divider
+
+    nl-team-search-form.thisshit
 
         p
-            | I want to hire
-            | <nl-select value="nlSelects.who.value" options="nlSelects.who.options" required></nl-select>.
+            | I am looking for
+            | <nl-select value="nlSelects.who.value" options="nlSelects.who.options" required></nl-select>
+            | to work on a
+            | <nl-select value="nlSelects.who.value" options="nlSelects.who.options" required></nl-select>
+            | by
+            | <nl-select value="nlSelects.who.value" options="nlSelects.who.options" required></nl-select>
 
         button(type="submit")
-            | Search
+            | Start Hunting

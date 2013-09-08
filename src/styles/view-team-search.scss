@@ -1,28 +1,60 @@
 
 .view-team-search {
-    position: relative;
-    background: #222;
-    display: table;
     height: 100%;
     width: 100%;
+    background: #222;
 
-    .logo {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 50%;
-        display:table-cell;
-        vertical-align:middle;
+    #wrapper {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin: -75px -385px;
+        width: 770px;
     }
 
-    .team-search {
-        position: absolute;
-        left: 50%;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        display: table-cell;
-        vertical-align: middle;
+    .thisshit {
+        float: right;
+    }
+
+    .logo {
+        float: left;
+        margin: 10px 0 0 0;
+    }
+
+    .divider {
+        float: left;
+        margin: 30px 0 0 80px;
+        height: 100px;
+        border-right: 1px solid #333;
+    }
+
+    p {
+        width: 465px;
+
+        color: #fff;
+        font-size: 16px;
+        font-weight: 200;
+        line-height: 28px;
+    }
+
+    button {
+        margin: 60px 0 0;
+        padding: 10px 15px;
+        background: #222;
+        border: 2px solid #fff;
+        cursor: pointer;
+
+        color: #fff;
+        font-size: 10px;
+        font-weight: bold;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #fff;
+        color: #222;
     }
 }

@@ -59,8 +59,8 @@ html(lang='en', ng-app="disrupt.sf.hack01")
     section#subviews(ng-switch="subview", ng-animate="'animate'")
 
         section.view-team-search(ng-switch-when="search")
-            .logo
-              | Wonder Wolves
+          #wrapper
+            img.logo(src='assets/images/ww_logo.svg')
             team-search(teams="$parent.teams", found-teams="$parent.foundTeams")
 
         section.subview(ng-switch-when="list")
