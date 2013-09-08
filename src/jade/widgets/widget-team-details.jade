@@ -14,7 +14,7 @@
                 li.project-language(ng-repeat="language in project.languages", ng-class="{selected:langUsed(language)}")
                     | {{ language }}
 
-    .modal
+    .modal(ng-class="{active:modalActive}" )
         article
             p
                 | I am looking for <b>sexy people</b> to work on a
@@ -32,6 +32,5 @@
             p.price
                 | $3,000 USD <b>/</b> Project
 
-
-        .send-btn
+        .send-btn(ng-click="goToSearchPage()")
             | Send Offer

@@ -21,28 +21,17 @@ app.service 'TeamFinder', ($rootScope) ->
 
     findTeamsWithLanguages = (teams, languages) ->
         teamSets = _.map languages, (language) -> findTeamsWithLanguage teams, language
-
-        teams = _.flatten _.map teamSets, do ->
+        return _.flatten _.map teamSets, do ->
             seen = {}
             (teams) -> _.filter teams, (team) ->
                 return false if seen[team.name]
                 return (seen[team.name] = true)
-
-        # teams = _.sortBy teams, (team) ->
-        #     langSets = _.map team.projects, (project) -> project.languages
-        #     _.reduce langSets, ((result, langSet) ->
-        #         for language in langSet
-        #             result++ if language in languages
-        #         return result
-        #     ), 0
-
 
     searchHandler: (teams, searchResults) ->
         results =
             who:  searchResults.who.value
             when: searchResults.when.value
             what: searchResults.what.value
-        # console.log searchResults, teams, results.who
         $rootScope.langs = results.who
         return findTeamsWithLanguages teams, results.who
 
@@ -55,7 +44,6 @@ app.directive 'nlTeamSearchForm', ($rootScope, TeamFinder) ->
     template: '<form ng-transclude></form>'
     link: ($scope) ->
 
-
         values =
             who:
                 ios:            ['Obj-C']
@@ -65,7 +53,6 @@ app.directive 'nlTeamSearchForm', ($rootScope, TeamFinder) ->
                 frontend:       ['HTML', 'CSS', 'Javascript']
                 nocturnal:      ['Clojure']
                 sexy:           ['Javascript']
-
 
         $scope.nlSelects =
             who:
@@ -98,7 +85,6 @@ app.directive 'nlTeamSearchForm', ($rootScope, TeamFinder) ->
 
         $scope.submitForm = ->
             teams = TeamFinder.searchHandler $scope.teams, $scope.nlSelects
-            console.log teams
             $rootScope.listTeams teams
 
 
@@ -115,6 +101,9 @@ app.directive 'teamList', ($timeout, $rootScope) ->
     templateUrl: '/widgets/widget-team-list.html'
     link: ($scope) ->
         $scope.focusedTeamIndex = 0
+
+        $scope.activateModal = ->
+            $rootScope.modalActive = true
 
         $scope.showPreviousTeam = ->
             if $scope.focusedTeamIndex < 1
@@ -148,7 +137,6 @@ app.directive 'teamList', ($timeout, $rootScope) ->
             $scope.focusedTeam = $scope.availableTeams[index]
 
 
-
 app.directive 'teamDetails', ($rootScope) ->
     restrict: 'E'
     scope:
@@ -159,7 +147,11 @@ app.directive 'teamDetails', ($rootScope) ->
         $scope.langs = $rootScope.langs
         $scope.langUsed = (language) ->
             language in $scope.langs
-
+        $rootScope.$watch 'modalActive', (modalActive) ->
+            $scope.modalActive = modalActive
+        $scope.goToSearchPage = ->
+            $rootScope.modalActive = false
+            $rootScope.goToSearchPage()
 
 
 app.directive 'teamCompare', ->
