@@ -16,6 +16,7 @@ See demo at http://wonderwolves.co
 - Wayne Spiegel - UI/UX Design & Development
 - Pete Hatch - UI/UX Design
 - Nicolas Porter - Development
+- Nick Quinlan - Data Scientist
 - Cathy Han - Supreme Overlord
 
 Crafted in ~24 hours during the TechCrunch Disrupt SF 2013!
